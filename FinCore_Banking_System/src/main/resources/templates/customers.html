@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Customers</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header><div class="logo">FINCORE <span>BANKING</span></div><a href="/dashboard">Dashboard</a></header><main>
+<div class="topbar"><div><h1>Customers</h1><p class="muted">Search, manage and create customer profiles.</p></div><a class="button primary" href="/banking/customers/new">+ New Customer</a></div>
+<div th:if="${param.success}" class="alert success" th:text="${param.success}"></div>
+<form class="searchbar" method="get" action="/banking/customers"><input name="q" th:value="${query}" placeholder="Search name, email or phone"><button class="primary">Search</button><a class="button" href="/banking/customers">Clear</a></form>
+<div class="table-card"><table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Login</th><th>Action</th></tr></thead><tbody>
+<tr th:each="c:${customers}"><td th:text="${c.id}"></td><td th:text="${c.fullName}"></td><td th:text="${c.email}"></td><td th:text="${c.phone}"></td><td th:text="${c.user != null ? c.user.username : 'Not linked'}"></td><td><form method="post" th:action="@{'/banking/customers/'+${c.id}+'/delete'}" onsubmit="return confirm('Delete this customer? Accounts must be deleted first.');"><button class="danger-btn">Delete</button></form></td></tr>
+</tbody></table></div></main></body></html>

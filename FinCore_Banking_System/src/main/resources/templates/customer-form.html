@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create Customer</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><main class="form-page"><div class="form-card wide"><div class="logo">FINCORE <span>BANKING</span></div><h1>Create Customer</h1><p class="muted">Create the customer profile and login credentials together.</p>
+<form method="post" th:action="@{/banking/customers}">
+<label>Full Name</label><input name="fullName" placeholder="Customer full name" required>
+<label>Email</label><input name="email" type="email" placeholder="customer@email.com" required>
+<label>Phone</label><input name="phone" placeholder="10 digit phone" required>
+<label>Login Username</label><input name="username" placeholder="Unique username" required>
+<label>Temporary Password</label><input name="password" type="password" minlength="6" placeholder="Minimum 6 characters" required>
+<div class="form-actions"><button class="primary">Create Customer & Login</button><a class="button" href="/banking/customers">Cancel</a></div>
+</form></div></main></body></html>

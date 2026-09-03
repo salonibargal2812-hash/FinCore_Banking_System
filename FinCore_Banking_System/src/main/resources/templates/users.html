@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>User Management</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header><div class="logo">FINCORE <span>BANKING</span></div><a href="/dashboard">Dashboard</a></header><main><div class="topbar"><div><h1>User Management</h1><p class="muted">ADMIN-only role and account access management.</p></div></div>
+<div th:if="${param.success}" class="alert success" th:text="${param.success}"></div>
+<div class="table-card"><table><thead><tr><th>ID</th><th>Username</th><th>Role</th><th>Enabled</th><th>Update</th></tr></thead><tbody>
+<tr th:each="u:${users}"><td th:text="${u.id}"></td><td th:text="${u.username}"></td><td><select name="role" th:id="|role-${u.id}|" th:attr="form=|user-form-${u.id}|"><option th:each="r:${T(com.saloni.banking.entity.Role).values()}" th:value="${r}" th:text="${r}" th:selected="${r==u.role}"></option></select></td><td><label class="check"><input type="checkbox" name="enabled" value="true" th:checked="${u.enabled}" th:attr="form=|user-form-${u.id}|"> Enabled</label></td><td><form class="inline" th:id="|user-form-${u.id}|" method="post" th:action="@{'/banking/users/'+${u.id}+'/update'}"><button class="primary">Save</button></form></td></tr>
+</tbody></table></div></main></body></html>

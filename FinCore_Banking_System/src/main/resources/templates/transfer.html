@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fund Transfer</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><main class="form-page"><div class="form-card wide"><div class="logo">FINCORE <span>BANKING</span></div><h1>Fund Transfer</h1><p class="muted">Transfer money securely between active accounts.</p>
+<form method="post" th:action="@{/banking/transfer}">
+<label>From Account</label><select name="fromAccount" required><option value="">Select source account</option><option th:each="a:${myAccounts}" th:value="${a.accountNumber}" th:text="${a.accountNumber + ' • ' + a.customer.fullName + ' • ₹' + a.balance}"></option></select>
+<label>To Account Number</label><input name="toAccount" placeholder="Destination account number" required>
+<label>Amount</label><input name="amount" type="number" min="0.01" step="0.01" placeholder="Enter amount" required>
+<div class="form-actions"><button class="primary">Transfer Money</button><a class="button" href="/dashboard">Cancel</a></div>
+</form></div></main></body></html>
